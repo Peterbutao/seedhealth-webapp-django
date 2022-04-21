@@ -3,5 +3,6 @@ from plantdiseases import views
 
 
 urlpatterns = [
-    path('', views.app)
+    path('', views.app),
+    path('slug/', views.dynamic)
 ]

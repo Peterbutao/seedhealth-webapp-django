@@ -1,7 +1,436 @@
-<div class="hello">lorem100
-    <div class="p">
-        {%for src in data%}
-        <p>{{src.title}}</p>
+<!doctype html>
+
+<html lang="en-us" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>SEED HEALTH</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/static/admin/css/fonts.css">
+        <style>
+          :root{
+            --lg: hsl(157, 69%, 65%);
+            --gc: hsl(157, 69%, 31%);
+            --fg: hsla(157, 69%, 31%, 0.1);
+            --dg: hsl(157, 69%, 15%);
+           --tc:hsl(157, 69%, 2%);    
+           --lc: seashell;         
+            --cloud: #19865C;
+          }
+          html {
+            line-height: 1.15;
+          }
+          a {
+            text-decoration: none;
+          }
+          .card{
+            background-color: var(--fg);
+            padding: 10px;
+            margin: 10px 0;
+          }
+          .card .cd h4{
+            color: var(--dg);
+            text-align: start;
+            text-transform: uppercase;
+          }
+          .card .cd p{
+            color: var(--tc);
+          }
+          .cd{
+            display: block;
+          }
+                 
+          header {
+            border-bottom: 1px solid #efefef;
+          }
+          body {
+            max-width: 960px;
+            color: #525252;
+            font-family: Roboto, sans-serif;
+            margin: 0 auto;
+          }
+          main {
+            text-align: center;
+          }
+          main h1{
+            text-align: start;
+          }
+          h1, h2, h3, h4, h5, p, ul {
+            padding: 0;
+            margin: 0;
+            font-weight: 400;
+          }
+          header {
+            display: grid;
+            grid-template-columns: auto auto;
+            align-items: self-end;
+            justify-content: space-between;
+            gap: 7px;
+            padding-top: 20px;
+            padding-bottom: 10px;
+          }
+          .logo {
+            color: var(--gc);
+            font-weight: 700;
+            font-size: 1.375rem;
+            text-decoration: none;
+          }
+          .txt{
+            color: var(--gc);
+            font-weight: 800 !important;
+            font-size: 1rem;
+
+          }
+          .figure {
+            margin-top: 19vh;
+            max-width: 265px;
+            position: relative;
+            z-index: -9;
+            overflow: visible;
+          }
+          .exhaust__line {
+            animation: thrust 70ms 100 ease-in-out alternate;
+          }
+          .smoke {
+            animation: smoke .1s 70 ease-in-out alternate;
+          }
+          .option{
+            padding: 10px;
+            border: #19865C solid 1px;
+          }
+          .option div{
+            display: flex;
+            align-items: center;
+          }
+          .option div p {
+            text-transform: uppercase;
+            color: var(--lc);
+            font-size: 1rem;
+            margin: 0 10px;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+          }
+          .option table tbody tr td {
+            color: var(--lc);
+            font-size: 0.85rem;
+          }
+          .option table tbody tr td:nth-child(1){
+            color: var(--lg);
+          }
+          
+          .option table{
+            border-spacing: 10px 20px;
+          }
+          @keyframes smoke {
+            0% {
+              transform: translate3d(-5px, 0, 0);
+            }
+            100% {
+              transform: translate3d(5px, 0, 0);
+            }
+          }
+          .flame {
+            animation: burnInner2 .1s 70 ease-in-out alternate;
+          }
+          @keyframes burnInner2 {
+            0% {
+              transform: translate3d(0, 0, 0);
+            }
+            100% {
+              transform: translate3d(0, 3px, 0);
+            }
+          }
+          @keyframes thrust {
+            0% {
+              opacity: 1;
+            }
+            100% {
+              opacity: .5;
+            }
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .exhaust__line,
+            .smoke,
+            .flame {
+              animation: none;
+            }
+          }
+          h1 {
+            font-size: 1.375rem;
+            max-width: 32rem;
+            margin: 5px auto 0;
+          }
+          main p {
+            text-align: start;
+            line-height: 1.25;
+            max-width: 26rem;
+            margin: 10px 0;
+          }
+          footer {
+            background-color: var(--dg);
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 5px;
+            padding: 25px 0;
+            position: fixed;
+            box-sizing: border-box;
+            left: 50%;
+            bottom: 0;
+            width: 960px;
+            transform: translateX(-50%);
+            transform-style: preserve-3d;
+            border-top: 1px solid #efefef;
+          }
+          .option {
+            display: grid;
+            grid-template-columns: min-content 1fr;
+            gap: 10px;
+            box-sizing: border-box;
+            text-decoration: none;
+          }
+          .option svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: gray;
+            border: 1px solid #d6d6d6;
+            padding: 5px;
+            border-radius: 100%;
+          }
+          .option p {
+            font-weight: 300;
+            line-height: 1.25;
+            color: #525252;
+            display: table;
+          }
+          .option .option__heading {
+            color: #19865C;
+            font-size: 1.25rem;
+            font-weight: 400;
+          }
+          @media (max-width: 996px) {
+            body, footer {
+              max-width: 780px;
+            }
+          }
+          @media (max-width: 800px) {
+            footer {
+              height: 100%;
+              grid-template-columns: 1fr;
+              gap: 60px;
+              position: relative;
+              padding: 15px;
+            }
+            .figure {
+              margin-top: 10px;
+            }
+            main {
+              padding: 0 25px;
+            }
+            main h1 {
+              font-size: 1.25rem;
+            }
+            header {
+              grid-template-columns: 1fr;
+              padding-left: 20px;
+              padding-right: 20px;
+            }
+            footer {
+              width: 100%;
+              margin-top: 50px;
+            }
+          }
+          @media (min-width: 801px) and (max-height: 730px) {
+            .figure {
+              margin-top: 80px;
+            }
+          }
+          @media (min-width: 801px) and (max-height: 600px) {
+            footer {
+              position: relative;
+              margin: 135px auto 0;
+            }
+            .figure {
+              margin-top: 50px;
+            }
+          }
+          .sr-only {
+            clip: rect(1px, 1px, 1px, 1px);
+            clip-path: inset(50%);
+            height: 1px;
+            overflow: hidden;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+          }
+          main svg{
+            width: 100px;
+            padding: 30px;
+          }
+        </style>
+    </head>
+    <body>
+      <header>
+          <a class="logo" href="https://www.djangoproject.com/" target="_blank" rel="noopener">
+            SEED HEALTH
+          </a>
+          <p>View common plant diseases in <strong>MALAWI</strong></p>
+      </header>
+      <main>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116.12 129.17">
+          <g id="Layer_2" data-name="Layer 2">
+            <g id="Layer_1-2" data-name="Layer 1">
+              <path class="smoke" d="M55.82,90V70.05a0,0,0,0,1,0,0,20.5,20.5,0,0,0,0-41,0,0,0,0,1,0-.05V9.05a0,0,0,0,1,0-.05,40.5,40.5,0,0,1,0,81A0,0,0,0,1,55.82,90Z" fill="none" stroke="var(--gc)" stroke-miterlimit="10" stroke-width="2"/>
+              <path d="M55.82,19a30.5,30.5,0,0,1,0,61" fill="none" stroke="#000" stroke-miterlimit="10"/>
+              <path d="M55.82,1a48.55,48.55,0,0,1,48.49,49.39C103.83,77,81.54,98,55,98H45.87a0,0,0,0,1,0,0V62.05a0,0,0,0,1,0,0h9.54A12.77,12.77,0,0,0,68.27,50.66,12.52,12.52,0,0,0,55.82,37h-10a0,0,0,0,1,0,0V1" fill="none" stroke="var(--gc)" stroke-miterlimit="10" stroke-width="2"/>
+              <path d="M55.82,88V72.05a0,0,0,0,1,0,0,22.5,22.5,0,0,0,0-45,0,0,0,0,1,0-.05V11.05a0,0,0,0,1,0-.05,38.5,38.5,0,0,1,0,77A0,0,0,0,1,55.82,88Z" fill="none"/>
+              <path d="M53.87,91A40.54,40.54,0,0,1,13.32,50.45V40.38a0,0,0,0,1,0-.05l49.74.83a0,0,0,0,1,0,.05L64,91a0,0,0,0,1-.05,0Z" fill="none" stroke="var(--gc)" stroke-miterlimit="10" stroke-width="2"/>
+              <path d="M53.77,81A30.5,30.5,0,0,1,23.32,50.55a0,0,0,0,1,.05,0l29.9.5a0,0,0,0,1,0,0l.5,29.9A0,0,0,0,1,53.77,81Z" fill="none"/>
+              <path class="smoke" d="M53.87,98A47.55,47.55,0,0,1,6.32,50.45V33.26a0,0,0,0,1,0,0L70,34.28a0,0,0,0,1,0,0L71.1,98a0,0,0,0,1,0,0Z" fill="none" stroke="var(--gc)" stroke-miterlimit="10" stroke-width="2"/>
+              <path class="exhaust__line" d="M60.89,88h-7A37.55,37.55,0,0,1,16.32,50.45v-7a0,0,0,0,1,.05,0l43.79.73a0,0,0,0,1,.05,0L60.94,88A0,0,0,0,1,60.89,88ZM31.45,57.7A23.57,23.57,0,0,0,46.62,72.87a0,0,0,0,0,.06-.05l-.25-14.89a0,0,0,0,0,0,0L31.5,57.64A0,0,0,0,0,31.45,57.7Z" stroke="var(--gc)" stroke-miterlimit="10"/>
+              <text transform="translate(0 121.42)" font-size="18" font-family="SegoeUI-Bold, Segoe UI" font-weight="700">SEED H<tspan x="61.28" y="0" letter-spacing="0.01em">E</tspan><tspan x="71.11" y="0">A</tspan><tspan x="83.77" y="0" letter-spacing="-0.07em">L</tspan><tspan x="91.78" y="0">TH</tspan>
+              </text>
+            </g>
+          </g>
+        </svg>
+<!--         
+        <svg class="figure" viewBox="0 0 508 268" aria-hidden="true">
+          <defs>
+            <style>
+              .cls-1,
+              .cls-3{stroke:#000;}.cls-1,.cls-2,.cls-3{stroke-miterlimit:10;}.cls-1,.cls-2{stroke-width:60px;}.cls-1{opacity:0.31;}.cls-2{fill:none;stroke:#009245;}.cls-3{stroke-width:4px;}
+            </style>
+          </defs>
+          <g id="Layer_2" data-name="Layer 2">
+            <g id="Layer_1-2" data-name="Layer 1">
+              <rect class="cls-1" x="40" y="40.12" width="301" height="301"/>
+              <path class="cls-2" d="M340.08,351.12A307.58,307.58,0,0,1,120.81,260,309.42,309.42,0,0,1,30,40.12v-10l321,1-1,320.05Z"/>
+              <path class="cls-3" d="M14.35,458.36v-5.8a11.39,11.39,0,0,0,2.39,1.58,18.87,18.87,0,0,0,2.93,1.18,21.07,21.07,0,0,0,3.09.75,16.77,16.77,0,0,0,2.87.27c3,0,5.29-.57,6.78-1.69a5.68,5.68,0,0,0,2.24-4.85,5.78,5.78,0,0,0-.74-3,8.55,8.55,0,0,0-2.07-2.3,21.3,21.3,0,0,0-3.12-2c-1.2-.63-2.49-1.3-3.88-2s-2.83-1.49-4.1-2.25a17.36,17.36,0,0,1-3.31-2.52,10.6,10.6,0,0,1-2.22-3.12,9.78,9.78,0,0,1-.8-4.09,9.59,9.59,0,0,1,1.26-5,10.66,10.66,0,0,1,3.31-3.5A14.74,14.74,0,0,1,23.65,418a21.38,21.38,0,0,1,5.35-.68q6.21,0,9,1.5v5.53a16.39,16.39,0,0,0-9.55-2.58,16,16,0,0,0-3.22.34,9.12,9.12,0,0,0-2.87,1.1,6.31,6.31,0,0,0-2.05,2,5.19,5.19,0,0,0-.79,2.93,6.07,6.07,0,0,0,.6,2.79A6.76,6.76,0,0,0,21.94,433a17.6,17.6,0,0,0,2.85,1.88c1.13.6,2.42,1.27,3.89,2s2.93,1.53,4.27,2.35A19.46,19.46,0,0,1,36.5,442a12.4,12.4,0,0,1,2.42,3.31,9.39,9.39,0,0,1,.89,4.16,10.57,10.57,0,0,1-1.22,5.26,9.92,9.92,0,0,1-3.28,3.5,14.2,14.2,0,0,1-4.76,2,26.1,26.1,0,0,1-5.68.6,22.26,22.26,0,0,1-2.46-.16c-1-.11-2-.27-3-.47a25.89,25.89,0,0,1-2.89-.76A9.31,9.31,0,0,1,14.35,458.36Z"/><path class="cls-3" d="M70.45,460.06H48.19V418H69.52v4.46H53.11v14H68.29v4.43H53.11v14.7H70.45Z"/><path class="cls-3" d="M100.81,460.06H78.54V418H99.87v4.46H83.46v14H98.64v4.43H83.46v14.7h17.35Z"/><path class="cls-3" d="M108.89,460.06V418h11.6q22.22,0,22.21,20.48,0,9.74-6.17,15.63T120,460.06Zm4.92-37.56v33.1h6.27q8.27,0,12.86-4.42t4.6-12.54q0-16.14-17.16-16.14Z"/><path class="cls-3" d="M199,460.06h-4.92V440.9H172.32v19.16H167.4V418h4.92v18.43h21.74V418H199Z"/><path class="cls-3" d="M232.26,460.06H210V418h21.33v4.46h-16.4v14h15.17v4.43H214.92v14.7h17.34Z"/><path class="cls-3" d="M272.87,460.06h-5.45L263,448.28H245.15L241,460.06h-5.48l16.12-42h5.09Zm-11.52-16.2L254.76,426a17,17,0,0,1-.64-2.81H254a15.42,15.42,0,0,1-.68,2.81l-6.53,17.91Z"/><path class="cls-3" d="M300.84,460.06H279.05V418H284V455.6h16.87Z"/>
+              <path class="cls-3" d="M328,422.5H315.9v37.56H311V422.5h-12.1V418H328Z"/>
+              <path class="cls-3 exhaust__line" d="M366.21,460.06h-4.93V440.9H339.55v19.16h-4.93V418h4.93v18.43h21.73V418h4.93Z"/>
+              <path class="smoke" d="M507.812 234.24c0-2.16-.632-4.32-1.58-6.24-3.318-6.72-11.85-11.52-21.804-11.52-1.106 0-2.212.12-3.318.24-.474-11.52-12.956-20.76-28.282-20.76-3.318 0-6.636.48-9.638 1.32-4.74-6.72-14.062-11.28-24.806-11.28-.79 0-1.58 0-2.37.12-.79 0-1.58-.12-2.37-.12-10.744 0-20.066 4.56-24.806 11.28a35.326 35.326 0 00-9.638-1.32c-15.642 0-28.282 9.6-28.282 21.48 0 1.32.158 2.76.474 3.96a26.09 26.09 0 00-4.424-.36c-8.058 0-15.01 3.12-19.118 7.8-3.476-1.68-7.742-2.76-12.324-2.76-12.008 0-21.804 7.08-22.752 15.96h-.158c-9.322 0-17.38 4.32-20.856 10.44-4.108-3.6-10.27-6-17.222-6h-1.264c-6.794 0-12.956 2.28-17.222 6-3.476-6.12-11.534-10.44-20.856-10.44h-.158c-.948-9-10.744-15.96-22.752-15.96-4.582 0-8.69.96-12.324 2.76-4.108-4.68-11.06-7.8-19.118-7.8-1.422 0-3.002.12-4.424.36.316-1.32.474-2.64.474-3.96 0-11.88-12.64-21.48-28.282-21.48-3.318 0-6.636.48-9.638 1.32-4.74-6.72-14.062-11.28-24.806-11.28-.79 0-1.58 0-2.37.12-.79 0-1.58-.12-2.37-.12-10.744 0-20.066 4.56-24.806 11.28a35.326 35.326 0 00-9.638-1.32c-15.326 0-27.808 9.24-28.282 20.76-1.106-.12-2.212-.24-3.318-.24-9.954 0-18.486 4.8-21.804 11.52-.948 1.92-1.58 4.08-1.58 6.24 0 4.8 2.528 9.12 6.636 12.36-.79 1.44-1.264 3.12-1.264 4.8 0 7.2 7.742 13.08 17.222 13.08h462.15c9.48 0 17.222-5.88 17.222-13.08 0-1.68-.474-3.36-1.264-4.8 4.582-3.24 7.11-7.56 7.11-12.36z" fill="var(--cloud)"/>
+              <path fill="#6DDCBD" d="M239 152h30v8h-30z"/>
+              <path class="" fill="#E6E9EE" d="M250 172h7v90h-7z"/>
+              <path class="flame" d="M250.27 178.834l-5.32-8.93s-2.47-5.7 3.458-6.118h10.26s6.232.266 3.306 6.194l-5.244 8.93s-3.23 4.37-6.46 0v-.076z" fill="#AA2247"/>
+            </g>
+          </g>
+          
+          
+        </svg> -->
+        <h1>PLANT DISEASES</h1>
+        {%for pd in plant_diseases%}
+        <div class="card">
+          <a href={{pd.id}}  class="cd">
+            <h4>{{pd.name}}</h4>
+            <p>{{pd.description}}</p>
+          </a>
+        </div>
+        
         {%endfor%}
-    </div>
-</div>
+      </main>
+      <footer>
+        <!-- <a class="option" href="https://docs.djangoproject.com/en/3.2/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 017 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"></path>
+          </svg>
+          <p>
+            <span class="option__heading">Django Documentation</span><span class="sr-only">.</span><br>
+            Topics, references, &amp; how-to’s
+          </p>
+        </a> -->
+        <a class="option" href="https://docs.djangoproject.com/en/3.2/intro/tutorial01/" target="_blank" rel="noopener">
+          <div >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"></path>
+            </svg>
+            <p >DEVELOPMENT</p>
+          </div>
+          <br>
+          <table>
+            
+            <tbody>
+              <tr>
+                <td>DEV</td>
+                <td>peter rodrigues butao</td>
+              </tr>
+              <tr>
+                <td>EMAIL</td>
+                <td>peterrthanbutao@gmail.com</td>
+              </tr>
+              <tr>
+                <td>PHONE</td>
+                <td>0880164455</td>
+              </tr>
+              <tr>
+                <td>SITE</td>
+                <td>butaopeter.netlify.app</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          
+        </a>
+        <a class="option" href="https://www.djangoproject.com/community/" target="_blank" rel="noopener">
+          <div>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M16.5 13c-1.2 0-3.07.34-4.5 1-1.43-.67-3.3-1-4.5-1C5.33 13 1 14.08 1 16.25V19h22v-2.75c0-2.17-4.33-3.25-6.5-3.25zm-4 4.5h-10v-1.25c0-.54 2.56-1.75 5-1.75s5 1.21 5 1.75v1.25zm9 0H14v-1.25c0-.46-.2-.86-.52-1.22.88-.3 1.96-.53 3.02-.53 2.44 0 5 1.21 5 1.75v1.25zM7.5 12c1.93 0 3.5-1.57 3.5-3.5S9.43 5 7.5 5 4 6.57 4 8.5 5.57 12 7.5 12zm0-5.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 5.5c1.93 0 3.5-1.57 3.5-3.5S18.43 5 16.5 5 13 6.57 13 8.5s1.57 3.5 3.5 3.5zm0-5.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"></path>
+            </svg>
+            <p>
+              Community
+            </p>
+            
+          </div>
+          <br>
+          <table>
+            
+            <tbody>
+              <tr>
+                <td>CONTRIBUTE</td>
+                <td>  🖤 </td>
+              </tr>
+              
+
+            </tbody>
+          </table>
+          
+          
+        </a>
+      </footer>
+    </body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>app</title>
+</head>
+<body>
+    <header>
+        <div style="width: 30px" class="head">
+            <svg class="figure" viewBox="0 0 508 268" aria-hidden="true">
+                <path d="M305.2 156.6c0 4.6-.5 9-1.6 13.2-2.5-4.4-5.6-8.4-9.2-12-4.6-4.6-10-8.4-16-11.2 2.8-11.2 4.5-22.9 5-34.6 1.8 1.4 3.5 2.9 5 4.5 10.5 10.3 16.8 24.5 16.8 40.1zm-75-10c-6 2.8-11.4 6.6-16 11.2-3.5 3.6-6.6 7.6-9.1 12-1-4.3-1.6-8.7-1.6-13.2 0-15.7 6.3-29.9 16.6-40.1 1.6-1.6 3.3-3.1 5.1-4.5.6 11.8 2.2 23.4 5 34.6z" fill="#2E3B39" fill-rule="nonzero"></path>
+                <path d="M282.981 152.6c16.125-48.1 6.375-104-29.25-142.6-35.625 38.5-45.25 94.5-29.25 142.6h58.5z" stroke="#FFF" stroke-width="3.396" fill="#6DDCBD"></path>
+                <path d="M271 29.7c-4.4-10.6-9.9-20.6-16.6-29.7-6.7 9-12.2 19-16.6 29.7H271z" stroke="#FFF" stroke-width="3" fill="#2E3B39"></path>
+                <circle fill="#FFF" cx="254.3" cy="76.8" r="15.5"></circle>
+                <circle stroke="#FFF" stroke-width="7" fill="#6DDCBD" cx="254.3" cy="76.8" r="12.2"></circle>
+                <path class="smoke" d="M507.812 234.24c0-2.16-.632-4.32-1.58-6.24-3.318-6.72-11.85-11.52-21.804-11.52-1.106 0-2.212.12-3.318.24-.474-11.52-12.956-20.76-28.282-20.76-3.318 0-6.636.48-9.638 1.32-4.74-6.72-14.062-11.28-24.806-11.28-.79 0-1.58 0-2.37.12-.79 0-1.58-.12-2.37-.12-10.744 0-20.066 4.56-24.806 11.28a35.326 35.326 0 00-9.638-1.32c-15.642 0-28.282 9.6-28.282 21.48 0 1.32.158 2.76.474 3.96a26.09 26.09 0 00-4.424-.36c-8.058 0-15.01 3.12-19.118 7.8-3.476-1.68-7.742-2.76-12.324-2.76-12.008 0-21.804 7.08-22.752 15.96h-.158c-9.322 0-17.38 4.32-20.856 10.44-4.108-3.6-10.27-6-17.222-6h-1.264c-6.794 0-12.956 2.28-17.222 6-3.476-6.12-11.534-10.44-20.856-10.44h-.158c-.948-9-10.744-15.96-22.752-15.96-4.582 0-8.69.96-12.324 2.76-4.108-4.68-11.06-7.8-19.118-7.8-1.422 0-3.002.12-4.424.36.316-1.32.474-2.64.474-3.96 0-11.88-12.64-21.48-28.282-21.48-3.318 0-6.636.48-9.638 1.32-4.74-6.72-14.062-11.28-24.806-11.28-.79 0-1.58 0-2.37.12-.79 0-1.58-.12-2.37-.12-10.744 0-20.066 4.56-24.806 11.28a35.326 35.326 0 00-9.638-1.32c-15.326 0-27.808 9.24-28.282 20.76-1.106-.12-2.212-.24-3.318-.24-9.954 0-18.486 4.8-21.804 11.52-.948 1.92-1.58 4.08-1.58 6.24 0 4.8 2.528 9.12 6.636 12.36-.79 1.44-1.264 3.12-1.264 4.8 0 7.2 7.742 13.08 17.222 13.08h462.15c9.48 0 17.222-5.88 17.222-13.08 0-1.68-.474-3.36-1.264-4.8 4.582-3.24 7.11-7.56 7.11-12.36z" fill="#E6E9EE"></path>
+                <path fill="#6DDCBD" d="M239 152h30v8h-30z"></path>
+                <path class="exhaust__line" fill="#E6E9EE" d="M250 172h7v90h-7z"></path>
+                <path class="flame" d="M250.27 178.834l-5.32-8.93s-2.47-5.7 3.458-6.118h10.26s6.232.266 3.306 6.194l-5.244 8.93s-3.23 4.37-6.46 0v-.076z" fill="#AA2247"></path>
+              </svg>
+        </div>
+    </header>
+    <main>
+        <div class="mn">
+            <h1>plant diseases</h1>
+            <ul>
+                {%for pd in plant_diseases%}
+                <li>{{pd.name}}</li>
+                <p>{{pd.description}}</p>
+                {%endfor%}
+            </ul>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html> -->
